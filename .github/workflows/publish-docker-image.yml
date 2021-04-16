@@ -5,7 +5,6 @@ on:
 jobs:
   publish-to-github-packages:
     name: Push Docker image to GitHub Packages
-    if: ${{ false }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -14,9 +13,9 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           registry: docker.pkg.github.com
-          username: ${{ github.ACTOR }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: aspearman/static-website/static-website # todo use GITHUB_REPOSITORY
+          username: ${{ github.actor }}
+          password: ${{ secrets.github_token }}
+          repository: ${{ secrets.github_repository }}
           tag_with_ref: true
   publish-to-github-container-registry:
     name: Push Docker image to GitHub Container Registry
@@ -28,7 +27,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           registry: ghcr.io
-          username: ${{ github.ACTOR }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          repository: aspearman/static-website/static-website # todo use GITHUB_REPOSITORY
+          username: ${{ github.actor }}
+          password: ${{ secrets.github_token }}
+          repository: ${{ secrets.github_repository }}
           tag_with_ref: true
