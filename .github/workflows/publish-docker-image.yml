@@ -11,13 +11,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Build and push to GitHub Packages
         uses: docker/build-push-action@v1
-        env:
-          GITHUB_REPOSITORY: ${{ secrets.github_repository }}
         with:
           registry: docker.pkg.github.com
           username: ${{ github.actor }}
           password: ${{ secrets.github_token }}
-          repository: "$GITHUB_REPOSITORY/$GITHUB_REPOSITORY"
+          repository: "${{ secrets.github_repository }}/${{ secrets.github_repository }}"
           tag_with_ref: true
   publish-to-github-container-registry:
     name: Push to GitHub Container Registry
