@@ -1,5 +1,6 @@
 name: Publish Docker images
 on:
+  workflow_dispatch:
   release:
     types: [published]
 jobs:
@@ -9,15 +10,13 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-      - name: Set repository env var
-        run: echo "::set-env name=INPUT_REPOSITORY::${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY##*/}"
       - name: Build and push to GitHub Packages
         uses: docker/build-push-action@v1
         with:
           registry: docker.pkg.github.com
           username: ${{ github.actor }}
           password: ${{ secrets.github_token }}
-          repository: ${{ env.input_repository }}
+          repository: "${GITHUB_REPOSITORY}/${GITHUB_REPOSITORY##*/}"
           tag_with_ref: true
   publish-to-github-container-registry:
     name: Push to GitHub Container Registry
