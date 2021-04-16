@@ -4,7 +4,7 @@ on:
     types: [published]
 jobs:
   publish-to-github-packages:
-    name: Push Docker image to GitHub Packages
+    name: Push to GitHub Packages
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -20,7 +20,7 @@ jobs:
           repository: format('{0}/{1}', $GITHUB_REPOSITORY, $GITHUB_REPOSITORY)
           tag_with_ref: true
   publish-to-github-container-registry:
-    name: Push Docker image to GitHub Container Registry
+    name: Push to GitHub Container Registry
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
