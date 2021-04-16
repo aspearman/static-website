@@ -15,7 +15,7 @@ jobs:
           registry: docker.pkg.github.com
           username: ${{ github.actor }}
           password: ${{ secrets.github_token }}
-          repository: ${{ secrets.github_repository }}
+          repository: format('{0}/{1}', ${{ secrets.github_repository }}, ${{ secrets.github_repository }})
           tag_with_ref: true
   publish-to-github-container-registry:
     name: Push Docker image to GitHub Container Registry
