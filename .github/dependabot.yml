@@ -1,0 +1,22 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Pacific/Auckland"
+    assignees:
+      - "aspearman"
+    pull-request-branch-name:
+      separator: "-"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "09:00"
+      timezone: "Pacific/Auckland"
+    assignees:
+      - "aspearman"
+    pull-request-branch-name:
+      separator: "-"
