@@ -4,20 +4,6 @@ on:
   release:
     types: [published]
 jobs:
-  publish-to-github-packages:
-    name: Push to GitHub Packages
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2.3.4
-      - name: Build and push to GitHub Packages
-        uses: docker/build-push-action@v1
-        with:
-          registry: docker.pkg.github.com
-          username: ${{ github.actor }}
-          password: ${{ secrets.github_token }}
-          repository: aspearman/static-website/static-website
-          tag_with_ref: true
   publish-to-github-container-registry:
     name: Push to GitHub Container Registry
     runs-on: ubuntu-latest
